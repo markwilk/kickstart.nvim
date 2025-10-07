@@ -20,3 +20,24 @@ vim.api.nvim_create_autocmd('Filetype', {
     end
   end,
 })
+
+-- Hints:
+--   A uppercase letter followed `z` means recursive
+--   zo: open one fold under the cursor
+--   zc: close one fold under the cursor
+--   za: toggle the folding
+--   zv: open just enough folds to make the line in which the cursor is located not folded
+--   zM: close all foldings
+--   zR: open all foldings
+-- source: https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
+  group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+  callback = function()
+    if require('nvim-treesitter.parsers').has_parser() then
+      vim.opt.foldmethod = 'expr'
+      vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+    else
+      vim.opt.foldmethod = 'indent'
+    end
+  end,
+})

@@ -60,7 +60,10 @@ require('lazy').setup({
     end,
   },
 
-  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
+  'preservim/vim-pencil',
+
+  'EdenEast/nightfox.nvim',
+
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 
   -- NOTE: Plugins can also be added by using a table,
@@ -689,12 +692,7 @@ require('lazy').setup({
       signature = { enabled = true },
     },
   },
-
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  {
     'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
@@ -704,11 +702,6 @@ require('lazy').setup({
           comments = { italic = false }, -- Disable italics in comments
         },
       }
-
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
 
@@ -826,23 +819,7 @@ require('lazy').setup({
   },
 })
 
--- Hints:
---   A uppercase letter followed `z` means recursive
---   zo: open one fold under the cursor
---   zc: close one fold under the cursor
---   za: toggle the folding
---   zv: open just enough folds to make the line in which the cursor is located not folded
---   zM: close all foldings
---   zR: open all foldings
--- source: https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
-  group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
-  callback = function()
-    vim.opt.foldmethod = 'expr'
-    vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-    vim.opt.foldenable = false
-  end,
-})
+require 'colorschemes'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
