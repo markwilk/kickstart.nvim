@@ -37,7 +37,8 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'Buf
       vim.opt.foldmethod = 'expr'
       vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
     else
-      vim.opt.foldmethod = 'indent'
+      vim.opt.foldmethod = 'syntax'
     end
+    vim.opt.foldenable = false
   end,
 })

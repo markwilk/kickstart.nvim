@@ -62,6 +62,8 @@ require('lazy').setup({
 
   'preservim/vim-pencil',
 
+  'vimoutliner/vimoutliner',
+
   'EdenEast/nightfox.nvim',
 
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
